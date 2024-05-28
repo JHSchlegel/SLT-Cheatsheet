@@ -1,45 +1,42 @@
 \section{Empirical Risk Minimisation (ERM)}
-
-% ===
 \emph{Cost:}\enspace
-$R(c,X,Y) = \sum_{i\leq N} \norm{y_i - c^\top \bm x_i}^2$\quad (regr.) \\
+$R(c,X,Y) = \sum_{i\leq N} \norm{y_i - c^\top \bm x_i}^2$\quad(regr.)\\
 \quad\textit{or}\quad
-$R(c,X,Y) = \sum_{i\leq N} \max(0, -y_i c^\top \bm x)$\quad (class.) \\
+$R(c,X,Y) = \sum_{i\leq N} \max(0, -y_i c^\top \bm x)$\quad (class.)\\
 \quad\textit{or}\quad
-$R(c,\theta,X) = \sum_{i\leq N} \norm{\bm x_i - \theta_{c(i)}}^2$\quad (clust.)
-
+$R(c,\theta,X) = \sum_{i\leq N} \norm{\bm x_i - \theta_{c(i)}}^2$\quad (clust.)\\
 \emph{Goal:}\enspace
-$\arg\min\limits_c \E[\mathcal{X}]{ R(c,\mathcal{X} } \approx \arg\min\limits_c \frac1N R(c, X)$
-
+$\arg\min\limits_c \E[\mathcal{X}]{ R(c,\mathcal{X}) } \approx \arg\min\limits_c \frac1N R(c, X)$
 % ===
-\subsection{Bayesianism / Frequentism}
+\iftrue
+    \subsection{Bayesianism / Frequentism}
 
-\emph{Bayesianism:}\enspace
-Define prior $P(\theta)$, define likelihood $P(X\mid\theta)$, compute posterior $P(\theta\mid x_{1...n})$.
-\\
-\textbf{Bayes:}\enspace
-$P(\theta\mid X) = \frac{P(X\mid\theta)P(\theta)}{P(X)}$,
-{\footnotesize $P(X) {=} \sum_\theta P(X\vert\theta_i) P(\theta_i)$}
+    \emph{Bayesianism:}\enspace
+    Define prior $P(\theta)$, define likelihood $P(X\mid\theta)$, compute posterior $P(\theta\mid x_{1...n})$.
+    \\
+    \textbf{Bayes:}\enspace
+    $P(\theta\mid X) = \frac{P(X\mid\theta)P(\theta)}{P(X)}$,
+    {\footnotesize $P(X) {=} \sum_\theta P(X\vert\theta_i) P(\theta_i)$}
 
-\emph{Frequentism:}\enspace
-%Define a parametric model $\theta$ (e.g. $\Gauss{\theta,1}$), compute likelihood of data and compute MLE: $\hat\theta\ped{MLE} = \arg\max_\theta P(y_{1...n}\mid\theta)$.
-Define param. model $P(Y\vert X,\theta)$, compute likelihood of data $P((X,Y)\mid\theta)$ and compute $\hat\theta\ped{MLE}$ via $\arg\max_\theta$ of likelihood.
+    \emph{Frequentism:}\enspace
+    %Define a parametric model $\theta$ (e.g. $\Gauss{\theta,1}$), compute likelihood of data and compute MLE: $\hat\theta\ped{MLE} = \arg\max_\theta P(y_{1...n}\mid\theta)$.
+    Define param. model $P(Y\vert X,\theta)$, compute likelihood of data $P((X,Y)\mid\theta)$ and compute $\hat\theta\ped{MLE}$ via $\arg\max_\theta$ of likelihood.
 
-% ===
-\subsection{Linear Regression
-\hfill{\normalfont\sffamily model:\enspace $\color{subsection_text_color} \hat{\mathbf y} = \bm X \beta$}}
+    % ===
+    \subsection{Linear Regression
+    \hfill{\normalfont\sffamily model:\enspace $\color{subsection_text_color} \hat{\mathbf y} = \bm X \beta$}}
 
-\emph{Ridge:}\enspace
-$\epsilon\ped{RSS}(\beta,{\color{OrangeRed}{\lambda}}) = \paren{\bm y - \bm X^\top \beta}^\top \paren{\bm y - \bm X^\top \beta} \color{OrangeRed} + \lambda \beta^\top \beta$ \\\quad
-$\hat\beta = (\bm X^\top \bm X {\color{OrangeRed} + \lambda \mathbb I})^{-1} \bm X^\top \bm y$,
-\quad prior: $\beta \sim \Gauss{0, \frac{\sigma^2}{\lambda} \mathbb I}$
+    \emph{Ridge:}\enspace
+    $\epsilon\ped{RSS}(\beta,{\color{OrangeRed}{\lambda}}) = \paren{\bm y - \bm X^\top \beta}^\top \paren{\bm y - \bm X^\top \beta} \color{OrangeRed} + \lambda \beta^\top \beta$ \\\quad
+    $\hat\beta = (\bm X^\top \bm X {\color{OrangeRed} + \lambda \mathbb I})^{-1} \bm X^\top \bm y$,
+    \quad prior: $\beta \sim \Gauss{0, \frac{\sigma^2}{\lambda} \mathbb I}$
 
-\emph{Lasso:}\enspace
-%$\epsilon\ped{RSS}(\beta,\lambda) = \sum_{i\leq n} (y_i - x_i^\top \beta)^2 + \lambda \norm{\beta}_2$ \\\quad
-$\hat\beta = \arg\min_\beta \sum_{i\leq n} (y_i - x_i^\top \beta)^2 \color{OrangeRed} + \lambda \norm{\beta}_2$ \\\quad
-\textit{(no closed form)},
-\quad prior: $p(\beta_i) = \frac{\lambda}{4\sigma^2} \exp(-\abs{\beta_i} \frac{\lambda}{2\sigma^2})$
-
+    \emph{Lasso:}\enspace
+    %$\epsilon\ped{RSS}(\beta,\lambda) = \sum_{i\leq n} (y_i - x_i^\top \beta)^2 + \lambda \norm{\beta}_2$ \\\quad
+    $\hat\beta = \arg\min_\beta \sum_{i\leq n} (y_i - x_i^\top \beta)^2 \color{OrangeRed} + \lambda \norm{\beta}_2$ \\\quad
+    \textit{(no closed form)},
+    \quad prior: $p(\beta_i) = \frac{\lambda}{4\sigma^2} \exp(-\abs{\beta_i} \frac{\lambda}{2\sigma^2})$
+\fi
 
 
 % ===

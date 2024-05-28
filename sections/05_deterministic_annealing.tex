@@ -13,7 +13,7 @@ $p(c\mid \theta, X) = \prod_{i\leq N} p_i(c(i) \mid \theta,X)$\\
 % $\substack{~\\[10pt]\textcolor{gray}{\leftarrow Z(X)}}$
 
 Max. entr.
-$\implies \pderiv{\log Z}{\theta_k} = 0
+$\implies \pderiv{\log Z}{\theta_k} = \pderiv{\sum_{i\leq n} \log\sum_{\nu\leq K}\exp(-\norm{x_i-\theta_{\nu}}^2)}{\theta_k} \triangleq0
 \implies \highlight{\theta_k^\ast = \frac{ \sum_i p_i(k\mid \theta^\ast, X) \:\cdot\: \bm x_i }{ \sum_i p_i(k\mid \theta^\ast, X) }}$
 
 \algobox{
@@ -24,7 +24,7 @@ $\implies \pderiv{\log Z}{\theta_k} = 0
             \vspace{-5pt}
             \textbf{E-step:\;} $p_i(k\vert \theta\ap{old}, X) = \frac{\exp\paren*{ -\frac1T \norm{\bm x_i - \theta_k}^2 }}{\sum_{j\leq K} \exp\paren*{ -\frac1T \norm{\bm x_i - \theta_j }^2}}$
             \vspace{-5pt}
-        \item[] \textbf{M-step:} $\theta_k \leftarrow \ldots$
+        \item[] \textbf{M-step:} $\theta_k \leftarrow \dfrac{\sum_{i\leq n}p_{ik}x_i}{\sum_{i\leq n}p_{ik}}$
         \item[] $\theta\ap{old} \leftarrow \theta$
     \end{itemize}
     \item[] until convergence of $\theta$
@@ -37,3 +37,11 @@ $\implies \pderiv{\log Z}{\theta_k} = 0
 For $T {\to} \infty$ :\enspace $\theta_k^\ast = \overline{\bm X} \enspace \forall k\leq K$\\
 Once $T=2\lambda\ped{max}$, more centroids appear, where $\lambda\ped{max} = \textrm{max. eigenvalue}$ of $\frac1N \bm X^\top \bm X$.
 \enspace($\bm x_i$'s row-wise)
+
+\emph{DA vs MAP:}\enspace
+\begin{enumerate}
+    \item MAP can get stuck in local maximum
+    \item MAP not robust against noisy data
+    \item DA guaranteed to obtain global optimum if annealing is slow enough and ergodicity is given
+    \item In DA T>0 gives entropic regularisation
+\end{enumerate}

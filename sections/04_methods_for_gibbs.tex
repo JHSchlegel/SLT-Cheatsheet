@@ -1,19 +1,23 @@
 \section{Methods for intractable Gibbs distr.}
 
 % Problem: How to sample from $p(c) = \frac{1}{\textcolor{red}{Z}} f(c)$?
-
+\subsection{Markov Chains}
 % ===
-\subsection{Sampling and SA}
-
+\emph{Mixing time of MC:} $\norm{P^t(c, \cdot) - \pi(\cdot)}_{TV} \leq \epsilon$\\
+$t_{mix}\propto \frac{1}{\lambda_1 - \lambda_2}$ where $1=\lambda_1 > \lambda_2 \geq \ldots$ \\
 \textit{Well behaving} \emph{Markov Chains} are
-\begin{itemize}
-    \item \textbf{irreducible:} can go from/to any state, and
-    \item \textbf{aperiodic:} chain doesn't go ``back \& forth'' forever.
-\end{itemize}
+\begin{enumerate}
+    \item \textbf{irreducible:} can go from/to any state (n steps)
+    \item \textbf{aperiodic:} chain doesn't go back \& forth forever ($\forall n>n(c, c')$ (no) path length n w/ non-zero prob.)
+\end{enumerate}
 
-$\implies$ \textbf{Stationary dist.} \highlight[algorithm-color]{$p(c') = \sum_c \pi(c\mid c') p(c)$}
+1. $\wedge$ 2. $\implies$ \textbf{unique stat. dist.} \highlight[algorithm-color]{$p(c') = \sum_c \pi(c\mid c') p(c)$}\\
+1. $\wedge$ 2. $\wedge$ stat. $\implies$ $\lim_{t\rightarrow \infty}\mathbb{P}[X_t=c]= p(c)\wedge\lim_{t\rightarrow\infty}\dfrac{1}{t}\sum_{s=1}^tf(X_s)=\sum_c p(c)f(c)$
 
-$\iff$ \textbf{det. balance} \highlight{$\pi(c'\mid c) p(c) = \pi(c\mid c') p(c')$}
+\textbf{DBE} \highlight{$\pi(c'\mid c) p(c) = \pi(c\mid c') p(c')$}$\implies$ \textbf{p stat.}\\
+\textbf{MH:} $\lambda_2=\max\left\{1-\frac{q(y, x)}{p_x}, 1-\frac{q(x, y)}{p_y}\right\}=1-\alpha-\beta$
+
+\subsection{Sampling and SA}
 
 \emph{Metropolis-Hastings:}
 Assume $p(c) \propto f(c)$.
@@ -29,27 +33,27 @@ $q(c'\mid c) :$ prob. to propose the move $c \to c'$,\\
 and\enskip
 $A(c,c') \coloneqq \min\brace*{ 1, \frac{q(c\mid c') \: f(c') \: / \: \cancel{Z}}{q(c'\mid c) \: f(c) \: / \: \cancel{Z}} }$ prob. accept move
 
-% --------
-\columnbreak
-% --------
-
 \emph{Metropolis Algorithm:}\enspace
 Assume $p(c) \propto f(c)$ and $q(c'\mid c) = q(c\mid c')$, i.e. symmetric.
 
 \algobox{%
 \begin{enumerate}
     \item Define symmetric $\brace{ q(\cdot\mid c) }_{c\in\mathcal C}$ s.t. graph $G_q$ is connected and every vertex in $G_q$ has edge to itself.
-    \item $c_0 \leftarrow \$$
-        \qquad Then, for $t=1,2,\ldots$, do:
+    \item $c_0^T \leftarrow \$$
+        \qquad while $T > \epsilon$ do:
     \begin{itemize}
-        \item $\tilde c \leftarrow q(\cdot\mid c_{t-1})$ \quad // sample
-        \item $b \leftarrow \mathrm{Bern}\paren*{\min\brace*{ 1, \eu^{-\frac1T [R(\tilde c, X) - R(c_{t-1}, X)]} }}$ % A(c_{t-1}, c)
-        \item If $b=1$ then $c_t \leftarrow \tilde c$ else $c_t \leftarrow c_{t-1}$.
+        \item for $t=1,2,\ldots N$, do:
+        \begin{itemize}
+            \item $\tilde c \leftarrow q(\cdot\mid c_{t-1}^T)$ \quad // sample
+            \item $b \leftarrow \mathrm{Bern}\paren*{\min\brace*{ 1, \eu^{-\frac1T [R(\tilde c, X) - R(c_{t-1}, X)]} }}$ % A(c_{t-1}, c)
+            \item If $b=1$ then $c_t^T \leftarrow \tilde c$ else $c_t^T \leftarrow c_{t-1}$.
+        \end{itemize}
+        \item $c_0 \leftarrow c_N^T$
+        \item $T \leftarrow \text{reduce}(T)$\\
+        \item $c_0^T \leftarrow c_0
     \end{itemize}
 \end{enumerate}
 }
-
-$\pi(c'\mid c) = \{ \substack{\cdots\\\cdots} \enskip\color{gray} \leftarrow \text{c.f. scr. (2.7)}$
 
 \iffalse
     % ===
@@ -103,9 +107,9 @@ $\pi(c'\mid c) = \{ \substack{\cdots\\\cdots} \enskip\color{gray} \leftarrow \te
     \end{minipage}
 \fi
 
-\emph{Simulated annealing:}
-Gradually decrease temp. $T$ to escape bad local minima.
-$\to$ MH-sampling from Gibbs (DA does not sample!).
+\emph{Temperature:}
+high temperature $T$ $\to$ closer to uniform i.e. worse ability to discriminate between good and bad  models $\to$ more likely to accept moves i.e. exploration, not stuck in bad local minima\\
+reduce temperature to find better local minima and get stuck there
 
 % ===
 \subsection{Laplace's Method \quad\normalfont\sffamily (Least angle clust.)}

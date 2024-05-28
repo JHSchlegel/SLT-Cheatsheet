@@ -4,6 +4,14 @@
 \begin{itemize}
     \item General p-norm:\enskip
         $\norm{x}_p = \paren{\sum_{i=1}^n \abs{x_i}^p}^{1/p}$
+    \item Hoelder:\enskip
+        $\norm{uv}_1 \leq \norm{u}_p \norm{v}_q,\quad\norm{u+v}_p \leq \norm{u}_p + \norm{v}_p$
+    \item Triangle:\enskip
+        $\norm{u+v}_p \leq \norm{u}_p + \norm{v}_p$
+    \item Cauchy-Schwarz:\enskip
+        $\abs{\langle u,v \rangle}^2 \leq \norm{u}^2 \norm{v}^2$
+    \item Cauchy-Schwarz:\enskip
+        $\abs{\E{X,Y}}^2 \leq \E{X^2} \E{Y^2}$
     \item Taylor:\enskip
         $f(x) \approx f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \ldots$
         \begin{itemize}
@@ -19,7 +27,7 @@
             \item $H(X,Y) = H(X) + H(Y\mid X)$
             \item $H(X\mid g(X)) \geq 0$
                 \quad$\circ$ $H(g(X)\mid X) = 0$
-            \item $H(5X) \scriptsize\begin{cases} =H(X) & \text{discrete} \\ >H(X) & \text{continuous} \end{cases}$
+            \item $H(cX) \scriptsize\begin{cases} =H(X) & \text{discrete} \\ =H(X) + \log{|c|} >H(X) & \text{continuous} \end{cases}$
         \end{itemize}
     \item MI:\enskip
         $I(X;Y \textcolor{OrangeRed}{\mid Z} ) = H(X \textcolor{OrangeRed}{\mid Z} ) - H(X\mid Y \textcolor{OrangeRed}{, Z} )$ {\scriptsize\enskip(symmetric)}
@@ -31,35 +39,12 @@
         \end{itemize}
     \item KL-divergence:\enskip
         $D\ped{KL} (p\parallel q) = \sum_x p(x)\log\paren*{\frac{p(x)}{q(x)}} \geq 0$
-    \item Cauchy-Schwarz:\enskip
-        $\abs{\E{X,Y}}^2 \leq \E{X^2} \E{Y^2}$
+    
     \item $1-z \leq \exp(-z)$
     \item Jensen, $f(X)$ convex:\enskip
         $f(\E{X}) \leq \E{f(X)}$
 \end{itemize}
 
-% ===
-\subsection{Probability / Statistics}
-
-\begin{itemize}
-    \item Gaussian:\enskip
-        $\Gauss*{x \mid \mu, \sigma^2} = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\paren*{-\frac12 \frac{(x-\mu)^2}{\sigma^2}}$
-        \\
-        $\Gauss{\bm x \mid \bm\mu,\bm\Sigma} = \frac{1}{\sqrt{(2\pi)^d \abs{\bm\Sigma}}} \exp \left( -\frac{1}{2} (\bm x - \mu)^\top \bm \Sigma^{-1} (\bm x - \mu) \right)$
-        \begin{itemize}
-            % \item $\ln(\Gauss{}) = - \frac{\ln\abs{\bm\Sigma}}{2} - \frac12 (\bm x - \bm\mu)^\top \bm\Sigma^{-1} (\bm x - \bm\mu) + \frac{d}{2} \ln(2\pi)$%{-} \frac{d}{2} \ln(2\pi)
-            \item $X \sim \Gauss{\bm{\mu,\Sigma}}, Y = A + BX \implies Y \sim \Gauss{A+B\bm\mu, B\bm\Sigma B^\top}$
-        \end{itemize}
-    \item Binomial:\enskip
-        $f(k,n;p) = \P{X=k} = \binom nk p^k (1-p)^{n-k}$
-    \item $\V{X} = \E{(X-\E{X})^2} = \E{X^2} - \E{X}^2$
-        \\
-        $\V{X+Y} = \V{X} + \V{Y} + 2\Cov{X,Y}$
-    \item $\Cov{X,Y} = \E{(X-\E{X})(Y-\E{Y})}$\\
-        $\phantom{\Cov{X,Y}} = \E{XY} - \E{X}\E{Y}$
-        \\
-        $\Cov{aX,bY} = ab\Cov{X,Y}$
-\end{itemize}
 
 % ===
 \subsection{Calculus}
@@ -88,10 +73,8 @@
         Trace trick:\enspace
             $\bm x^\top \bm{Ax} = \ldots$\\\hfill
             $\ldots \overset{\small\substack{\textrm{inn. prod.}}}{=} T\!r (\bm x^\top \bm{Ax}) \overset{\small\substack{\textrm{cycl. permut.}}}{=} T\!r(\bm{xx}^\top \bm A) = T\!r(\bm{Axx}^\top)$
-    \item $\sigma(x) = \frac{1}{1 + \exp(-x)} \implies \nabla\sigma(x) = \sigma(x)(1-\sigma(x))$
-    \item $\tanh(x) = \frac{2\sinh(x)}{2\cosh(x)} = \frac{\eu^x - \eu^{-x}}{\eu^x+\eu^{-x}}$
-        \hfill\textbullet\hfill
-        $\nabla\tanh(x) {=} 1 {-} \tanh^2(x)$
+
 \end{itemize}
+
 
 % ===
