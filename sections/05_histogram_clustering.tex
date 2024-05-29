@@ -81,8 +81,9 @@ $\begin{cases}\begin{matrix*}[l]
     \\
     p_{\color{OrangeRed} t{+}1}(y\vert \hat x) &
         = \sum_{x} p(y\mid x) \cdot p(x) \cdot q_{\color{OrangeRed} t}(\hat x\mid x) \,/\, q_{\color{OrangeRed} t}(\hat x)
-\end{matrix*}\end{cases}$
-
+\end{matrix*}\end{cases}$\\
+$\pderiv{q(\hat{x})}{q(\hat{x}\prime\mid x\prime)}= p(x\prime)\Delta_{\hat{x}, \hat{x}\prime} \qquad \pderiv{p(\hat{x}\mid y)}{q(\hat{x}\prime\mid x\prime)}=p(x\prime\mid y)\Delta_{\hat{x}, \hat{x}\prime}$\\
+$\mathcal{L}(q(\hat{x}\mid x))=\sum_x\sum_{\hat{x}} q(\hat{x}\mid x)p(x)\log\dfrac{q(\hat{x}\mid x)}{q(\hat{x})}+\lambda\sum_{\hat{x}, y}p(y)p(\hat{x}\mid y)\log\dfrac{p(\hat{x}\mid y)}{q(\hat{x})} - \sum_x\mu(x)\sum_{\hat{x}}(q(\hat{x}\mid x) - 1)$
 
 % ===
 \subsection{Parametric Distributional Clustering}

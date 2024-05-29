@@ -153,21 +153,21 @@ where $J_{ij}$:\, interaction between particles,\\\phantom{where}
 $h_i$:\, noisy image,\enskip
 $\sigma_i$:\, denoised image
 
-\textbf{Problem:} \quad $\pderiv{G(p)}{p_{i\alpha}} = 0$ \enspace s.t.\enspace $\sum_{\nu\leq K} p_{i\nu} = 1 \: \forall i$
+\textbf{Problem:} \quad $\pderiv{G(p)}{p_u\alpha} = 0$ \enspace s.t.\enspace $\sum_{\nu\leq K} p_{i\nu} = 1 \: \forall i$
 
 \textbf{Solution:}\quad
 with the \textit{mean field} $h_u = [\cdots h_{u\alpha} \cdots]^\top$
 \\
 \highlight{$h_{u \alpha} \coloneqq \pderiv{\E{R(c)}}{p_{u\alpha}} = \E[c\sim p_{\mid u\to\ell}]{R(c)}$} $\leftarrow \substack{\text{object }u\text{ chooses}\\\text{class } \alpha}$
 \\
-\highlight{$p_{i\ell} = \eu^{-\beta h_{i\ell}} / Z_i$}
 
-\textbf{EM-like Algo:}\enspace
-Iteratively \enspace
-1.~Pick~random $i$ \enspace
-2.~$h_i^{\mathrm{new}} {\leftarrow} p_j^{\mathrm{old}}$ \enspace
-3.~$p_i^{\mathrm{new}} {\leftarrow} h_i^{\mathrm{new}}$ \enspace
-until converged.
+
+\textbf{E:}\highlight{$p_{u\alpha} = \frac{e^{-\beta h_{u\alpha}}}{\sum_{\nu\leq K} e^{-\beta h_{u\nu}}}$} 1. Pick random $i$ 2. $h_i^{\text{new}} \leftarrow p_j^{\text{old}}$ 3. $p_i^{\text{new}} \leftarrow h_i^{\text{new}}$
+\textbf{M:}\highlight{$h_{u\alpha} = \sum_c\prod_{i=1, i\neq u}^{N}p_i(c(i))\mathbb{I}_{\{c(u)=\alpha\}}R(c,x)$},\\
+
+$-H[P]=\underset{i\leq N}{\sum}\underset{c\setminus c(i)}{\sum}\underset{j\leq N}{\prod} p_j(c(j))\underset{{c(i)\in \{1,...,K\}}}{\sum}p_i(c(i))\log p_i(c(i))$\newline
+$=\sum_{i=1}^{N}\sum_{\nu=1}^{K}p_i(\nu) \log p_i(\nu)$
+
 
 \subsubsection{Smooth \textit{\rmfamily k}-means
 \qquad\normalfont\sffamily\color{gray}scr.20 (p. 39)}
