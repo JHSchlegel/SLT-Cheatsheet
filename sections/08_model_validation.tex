@@ -44,18 +44,20 @@ Solutions on two data sets drawn from the same source should be similar.
 Goal / \textbf{Best code:}\enspace
 \highlight{$\lim\limits_{n\to\infty} \frac{\log M}{n}$\enspace s.t.\enspace $\lim\limits_{n\to\infty} p\ped{err} \to 0$}
 
-\emph{Asymptotic equiparition property (AEP):}
-\vspace{-2pt}
-\begin{itemize}
-    \item $A_\epsilon^{(n)}$:
-        Typical set of sequences $(s_1,\ldots,s_n) \in \mathcal S^n$\\\qquad
-        $\abs*{-\frac1n \log p_{S^n} (\bm s^n) - H[S]} < \epsilon$\hfill
-        $\color{gray} \leftarrow \text{scr. p.89}$
-    \item $\P*{(\bm S^n, \bm{\hat S}^n) \in A_\epsilon^{(n)}} \overset{n\to\infty}{\to} 1$\hfill
-        $\color{gray} \leftarrow \text{scr. p.90}$
-    \item \highlight[algorithm-color]{$p\ped{err} \leq 2^{-n(\mathrm{cap} - 3\epsilon -r)}$}
-        $\overset{n\to\infty}{\to} 0$\enspace if\enspace \highlight[algorithm-color]{$r<\mathrm{cap}$}
-\end{itemize}
+\iffalse
+    \emph{Asymptotic equiparition property (AEP):}
+    \vspace{-2pt}
+    \begin{itemize}
+        \item $A_\epsilon^{(n)}$:
+            Typical set of sequences $(s_1,\ldots,s_n) \in \mathcal S^n$\\\qquad
+            $\abs*{-\frac1n \log p_{S^n} (\bm s^n) - H[S]} < \epsilon$\hfill
+            $\color{gray} \leftarrow \text{scr. p.89}$
+        \item $\P*{(\bm S^n, \bm{\hat S}^n) \in A_\epsilon^{(n)}} \overset{n\to\infty}{\to} 1$\hfill
+            $\color{gray} \leftarrow \text{scr. p.90}$
+        \item \highlight[algorithm-color]{$p\ped{err} \leq 2^{-n(\mathrm{cap} - 3\epsilon -r)}$}
+            $\overset{n\to\infty}{\to} 0$\enspace if\enspace \highlight[algorithm-color]{$r<\mathrm{cap}$}
+    \end{itemize}
+\fi
 
 
 \subsubsection{Algorithm Validation}
@@ -109,17 +111,12 @@ $\tau_i \xrightarrow{Enc} p(\cdot\mid \tau_i \circ X')
         whereby \highlight[algorithm-color]{$\kappa(X'', X') \coloneqq \sum_c p(c\mid X'') p(c\mid X')$}
 \end{itemize}
 
-\emph{Asymptotic Equipartition Property (AEP):}
+\emph{Approximate Sorting:}\enspace $R^{Sort}(\pi\mid\mathbf{X})=\sum_{i,j}x_{ij}\mathbb{I}_{\{\pi_i>\pi_j\}$\\
+\textbf{Approx. cap.:} $\underset{\beta}{\max} \mathcal{I}_{\BETA}=\frac1n \log|\mathcal{T}|+\underset{\beta}{\max}\left\{\frac1n\sum_{i\leq n}\log\sum_{k\leq n}\exp(-\beta(\mathcal{E}_{ik}^{(1)}+\mathcal{E}_{ik}^{(1)}))$\\$-\frac1n\sum_{i\leq n}\log(\sum_{k\leq n}\exp(-\beta\mathcal{E}_{ik}^{(1)})\sum_{k\prime\leq n}\exp(-\beta\mathcal{E}_{ij}^{(2)}))\right\}\}$\\
+$R^{mfs}(M\mid\mathcal{E})=\underset{i\leq n}{\sum}\underset{k\leq n}{\sum}M_{ik}\mathcal{E}_{ik}+\underset{k\leq n}{\sum}\mu_k(\sum_{i\leq n}M_{ik}-1)$\\
+$q_{ik}=\dfrac{\exp(-\beta(\mathcal{E}_{ik}+\mu_k))}{\sum_{k\prime}\exp(-\beta(\mathcal{E}_{ik\prime}+\mu_k\prime))}, \qquad \mathcal{E}_{ik}=\mathbb{E}_{Q_{i\to k}}[R^{Sort}]$
 
-\textit{AEP fulfilled}\enspace if\enspace \highlight{$\log \kappa(X',X'') \overset{n\to\infty}{\to} \mathcal E$}\\
-\enspace whereby $\mathcal E \coloneqq \E[X',X'']{\log\kappa(X',X'')}$
-\begin{itemize}
-    \item $A^{(n)}_\epsilon$: set of $(\epsilon,n)$-typical pairs $X', X''$\\\qquad
-        $\abs*{ \log\kappa(X',X'') - \mathcal E } < \epsilon$
-    \item \highlight[algorithm-color]{$p\ped{err} \leq P_{(n)} \color{gray} \text{ c.f. scr. (6.19)}$}
-        $\overset{n\to\infty}{\to} 0$ \enspace if\enspace \highlight[algorithm-color]{$\frac{\log m}{\log\abs{\mathcal C}} < I$}\\
-        where $I \coloneqq \frac{1}{\log\abs{\mathcal C}} \E[X',X'']{\log(\abs{\mathcal C} \kappa(X',X''))}$
-\end{itemize}
+
 
 % ===
 \subsection{Applications of PA}

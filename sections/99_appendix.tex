@@ -16,11 +16,6 @@ then $p(\bm x) = \Gauss{\bm x \mid \bm A^{-1} \bm b, \bm A^{-1}}$
 \enspace $\mathcal L(\bm x,\lambda,\alpha) = f(\bm x) + \sum_i \lambda_i g_i(\bm x) + \sum_j \alpha_j h_j(\bm x)$
 \\
 Solve: \: $\pderiv{\mathcal L}{\bm x} = 0$; \: $g_i(\bm x) = 0$; \: $\alpha_j \geq 0$; \: $h_j(\bm x) \leq 0$
-\\
-If \textbf{Slater's cond.} holds, $\exists \bm x : g_i(\bm x) = 0, h_j(\bm x) {\color{red}\,<\,} 0$, then we can solve the \textit{dual} instead:\\
-\enskip \highlight[algorithm-color]{$\max_{\bm \lambda, \bm \alpha} \brace{ \min_{\bm x} \mathcal L(\bm x, \bm \lambda, \bm \alpha) }$ \: s.t. \: $\alpha_j \geq 0$}\\
-Solve: \: $\pderiv{\mathcal L}{\bm x} = 0$; \: $\pderiv{\mathcal L}{\bm \lambda} = 0$; \: $\alpha_j h_j(\bm x) {\color{red}\,=\,} 0$; \: $\alpha_j \geq 0$
-
 \iffalse
     \emph{Lagrange Multipliers:}
     \\
