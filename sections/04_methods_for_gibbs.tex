@@ -131,10 +131,11 @@ reduce temperature to find better local minima and get stuck there
 
 % ===
 \subsection{Mean-field Approximation}
-
-\textbf{Idea:}\enskip
-Approximate $p_\beta$ (Gibbs) with a ``simple'', \\\phantom{\textbf{Idea:}}\enskip
-factorisable distribution $p = p_1 \cdots p_N$.
+\iffalse
+    \textbf{Idea:}\enskip
+    Approximate $p_\beta$ (Gibbs) with a ``simple'', \\\phantom{\textbf{Idea:}}\enskip
+    factorisable distribution $p = p_1 \cdots p_N$.
+\fi
 
 \textbf{Approach:}\enskip
 Minimise $D\ped{KL}(p\parallel p_\beta)$\\
@@ -168,7 +169,7 @@ with the \textit{mean field} $h_u = [\cdots h_{u\alpha} \cdots]^\top$
 $-H[P]=\underset{i\leq N}{\sum}\underset{c\setminus c(i)}{\sum}\underset{j\leq N}{\prod} p_j(c(j))\underset{{c(i)\in \{1,...,K\}}}{\sum}p_i(c(i))\log p_i(c(i))$\newline
 $=\sum_{i=1}^{N}\sum_{\nu=1}^{K}p_i(\nu) \log p_i(\nu)$\\
 \textbf{Minimum cond.:} $\dfrac{\partial^2}{\partial p_u^2(\alpha)} \mathcal{B}=\dfrac{1}{\beta p_u(\alpha)}>0$\\
-$\dfrac{\partial^2\mathcal{B}}{\partial p_u(\alpha)\partial p_v(\gamma)}=\dfrac{\partial h_u(\alpha)}{\partial p_v(\gamma)}=\sum_c\prod_{\substack{i = 1 \\ i\neq u, v}}p_i(c(i))\mathbb{I}_{\substack{c(u)=\alpha \\ c(v)=\gamma}}R(c, X)>0$ for non-negative coefs $R(c, X)$
+$\dfrac{\partial^2\mathcal{B}}{\partial p_u(\alpha)\partial p_v(\gamma)}=\dfrac{\partial h_u(\alpha)}{\partial p_v(\gamma)}=\sum_c\prod_{\substack{i = 1 \\ i\neq u, v}}p_i(c(i))\mathbb{I}_{\{\substack{c(u)=\alpha \\ c(v)=\gamma}\}}R(c, X)>0$ for $R(c, X)\geq 0$
 
 
 \subsubsection{Smooth \textit{\rmfamily k}-means
