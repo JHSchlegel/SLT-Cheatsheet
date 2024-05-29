@@ -145,18 +145,20 @@ $\iff$ Minimise \emph{Gibbs free energy:}\\
 \highlight[algorithm-color]{$H[p] = \sum_{i=1}^N H[p_i]$} \enskip \textit{and} \enskip \highlight[algorithm-color]{$F(\beta) \leq G(p)$}
 
 \emph{Ising model:}\enskip
-$R(c\mid J) = -\frac12 \sum_{i,j} J_{ij} c_i c_j - \sum_i h_i c_i$
+$E(\sigma\mid h) = -\frac{\beta}{2} \sum_i \frac{h_i}{|N_i|} \sum_{j \in N_i} h_j - \lambda \sum_i h_i \sigma_i$\\
+$E(\sigma\mid h) = - \sum_i^p h_i \sigma_i  -\lambda\sum_i^{p-r}\sigma_i\sigma_{i+r} $\\
+$E(\sigma\mid h) =  - \sum_i h_i \sigma_i - \lambda\sum_{i,j} J_{ij} \sigma_i \sigma_j$
 \\
 where $J_{ij}$:\, interaction between particles,\\\phantom{where}
 $h_i$:\, noisy image,\enskip
 $\sigma_i$:\, denoised image
 
-\textbf{Problem:} \quad $\pderiv{G(p)}{p_{i\ell}} = 0$ \enspace s.t.\enspace $\sum_{\ell'} p_{i\ell'} = 1 \: \forall i$
+\textbf{Problem:} \quad $\pderiv{G(p)}{p_{i\alpha}} = 0$ \enspace s.t.\enspace $\sum_{\nu\leq K} p_{i\nu} = 1 \: \forall i$
 
 \textbf{Solution:}\quad
-with the \textit{mean field} $h_i = [\cdots h_{i\ell} \cdots]^\top$
+with the \textit{mean field} $h_u = [\cdots h_{u\alpha} \cdots]^\top$
 \\
-\highlight{$h_{i\ell} \coloneqq \pderiv{\E{R(c)}}{p_{i\ell}} = \E[c\sim p_{\mid i\to\ell}]{R(c)}$} $\leftarrow \substack{\text{object }i\text{ chooses}\\\text{class } \ell}$
+\highlight{$h_{u \alpha} \coloneqq \pderiv{\E{R(c)}}{p_{u\alpha}} = \E[c\sim p_{\mid u\to\ell}]{R(c)}$} $\leftarrow \substack{\text{object }u\text{ chooses}\\\text{class } \alpha}$
 \\
 \highlight{$p_{i\ell} = \eu^{-\beta h_{i\ell}} / Z_i$}
 

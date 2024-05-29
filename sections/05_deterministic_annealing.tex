@@ -12,8 +12,9 @@ $p(c\mid \theta, X) = \prod_{i\leq N} p_i(c(i) \mid \theta,X)$\\
 % $\phantom{p(c\mid \theta, X)} = \prod_{i\leq N} \frac{\exp(-\frac1T \norm{\bm x_i - \theta_{c(i)}}^2)}{\sum_{j\leq K} \exp(-\frac1T \norm{\bm x_i - \theta_j}^2)}$
 % $\substack{~\\[10pt]\textcolor{gray}{\leftarrow Z(X)}}$
 
-Max. entr.
-$\implies \pderiv{\log Z}{\theta_k} = \pderiv{\sum_{i\leq n} \log\sum_{\nu\leq K}\exp(-\norm{x_i-\theta_{\nu}}^2)}{\theta_k} \triangleq0
+$\theta_k^*=\arg\underset{{\theta_k}}\max\left\{\dfrac{\mathbb{E}[R]}{T}+\sum_{i\leq n} \log\sum_{\nu\leq K}\exp(-\dfrac{1}{T}\norm{x_i-\theta_{\nu}}^2)\right\}$\\
+$\implies$ \textbf{Maximize Entropy}\\
+$\implies \pderiv{\log Z}{{\theta_k}} = \pderiv{\sum_{i\leq n} \log\sum_{\nu\leq K}\exp(-\norm{x_i-\theta_{\nu}}^2)}{\theta_k} \triangleq0
 \implies \highlight{\theta_k^\ast = \frac{ \sum_i p_i(k\mid \theta^\ast, X) \:\cdot\: \bm x_i }{ \sum_i p_i(k\mid \theta^\ast, X) }}$
 
 \algobox{
@@ -45,3 +46,9 @@ Once $T=2\lambda\ped{max}$, more centroids appear, where $\lambda\ped{max} = \te
     \item DA guaranteed to obtain global optimum if annealing is slow enough and ergodicity is given
     \item In DA T>0 gives entropic regularisation
 \end{enumerate}
+
+\emph{Limiting Behaviour:}\enspace
+\begin{itemize}
+    \item $\lim_{T\to \infty}:\qquad P(c(i)=k) \rightarrow \frac{1}{K}; \theta_k^\ast \rightarrow \frac1N \sum_i x_i$
+    \item $\lim_{T\to 0}:\qquad P(c(i)=k) \rightarrow \begin{cases} 1 & \text{if } k = \arg\min_j \norm{x_i - \theta_j} \\ 0 & \text{otw.} \end{cases}; \theta_k^\ast \rightarrow \dfrac{\sum_{i\in X_k} x_i}{|X_k|}$
+\end{itemize}
